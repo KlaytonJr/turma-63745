@@ -32,7 +32,7 @@ function ListaProdutos({ children, cpnTeste }) {
 
             <div className='lista-produtos'>
                 {
-                    produtos.map((produto) => <Produto titulo={produto.titulo} key={produto.title} descricao={produto.descricao} />)
+                  produtos.map((produto) => <Produto titulo={produto.titulo} key={produto.descricao} descricao={produto.descricao} />)
                 }
 
                 {/* <Produto 

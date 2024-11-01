@@ -18,15 +18,51 @@ function App() {
   
   // // Executado na montagem -> [] -> Depois que foi montado
   useEffect(() => {
+    // Coisas que podem demorar
     console.log("Dentro do useEffect");
 
     // addEventListener();
+
+    const task = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve([{ 
+          nome: "Fulano",
+          idade: 19,
+          cidade: "São Paulo"
+        }]);
+        // reject("Deu erro");
+      }, 2000);
+    });
+
+    task
+      .then((response) => {
+        if (response.nome === "Fulano") {
+          throw new Error("Erro dentro do then");
+        }
+        console.log("Executado...", response);
+        return response;
+      }
+      // , (error) => {
+      //   console.log("Deu ruim -> ", error);
+      //   throw error;
+      // }
+      )
+      .then((response) => {
+        console.log("Segund then", response);
+      })
+      .catch((error) => {
+        console.log("Deu ruim catch -> ", error);
+      })
+      .finally(() => {
+        console.log("Finalizou");
+        setLoading(false);
+      });
     
     // Chamada de API
-    setTimeout(() => {
-      console.log("Executado...");
-      setLoading(false);
-    }, 2000);
+    // setTimeout(() => {
+    //   console.log("Executado...");
+    //   setLoading(false);
+    // }, 2000);
 
     // Executado na desmontagem
     return () => {
