@@ -19,44 +19,44 @@ function App() {
   // // Executado na montagem -> [] -> Depois que foi montado
   useEffect(() => {
     // Coisas que podem demorar
-    console.log("Dentro do useEffect");
+    // console.log("Dentro do useEffect");
 
     // addEventListener();
 
-    const task = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve([{ 
-          nome: "Fulano",
-          idade: 19,
-          cidade: "São Paulo"
-        }]);
-        // reject("Deu erro");
-      }, 2000);
-    });
+    // const task = new Promise((resolve, reject) => {
+    //   setTimeout(() => {
+    //     resolve([{ 
+    //       nome: "Fulano",
+    //       idade: 19,
+    //       cidade: "São Paulo"
+    //     }]);
+    //     // reject("Deu erro");
+    //   }, 2000);
+    // });
 
-    task
-      .then((response) => {
-        if (response.nome === "Fulano") {
-          throw new Error("Erro dentro do then");
-        }
-        console.log("Executado...", response);
-        return response;
-      }
-      // , (error) => {
-      //   console.log("Deu ruim -> ", error);
-      //   throw error;
-      // }
-      )
-      .then((response) => {
-        console.log("Segund then", response);
-      })
-      .catch((error) => {
-        console.log("Deu ruim catch -> ", error);
-      })
-      .finally(() => {
-        console.log("Finalizou");
-        setLoading(false);
-      });
+    // task
+    //   .then((response) => {
+    //     if (response.nome === "Fulano") {
+    //       throw new Error("Erro dentro do then");
+    //     }
+    //     console.log("Executado...", response);
+    //     return response;
+    //   }
+    //   // , (error) => {
+    //   //   console.log("Deu ruim -> ", error);
+    //   //   throw error;
+    //   // }
+    //   )
+    //   .then((response) => {
+    //     console.log("Segund then", response);
+    //   })
+    //   .catch((error) => {
+    //     console.log("Deu ruim catch -> ", error);
+    //   })
+    //   .finally(() => {
+    //     console.log("Finalizou");
+    //     setLoading(false);
+    //   });
     
     // Chamada de API
     // setTimeout(() => {
@@ -64,12 +64,32 @@ function App() {
     //   setLoading(false);
     // }, 2000);
 
+    PegarPokemon();
+
     // Executado na desmontagem
     return () => {
       console.log("desmontei")
       // removeEventListener()
     }
   }, []);
+
+  const PegarPokemon = () => {
+    fetch(
+      'https://pokeapi.co/api/v2/pokemon/pikachu', 
+      {
+        method: "POST",
+        body: JSON.stringify({
+          name: "Klayton"
+        }),
+        headers: {
+          ContentType: "application/json"
+        }
+
+      }
+    )
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+  }
 
   // // Executado sempre que atualiza o estado contador
   useEffect(() => {
@@ -112,8 +132,10 @@ function App() {
           />
     
           <ItemListContainer greeting="Esse é o meu ItemListContainer" />
+
+          {/* <ItemDetailContainer /> */}
     
-          <Header titulo="Titulo do Header" />
+          {/* <Header titulo="Titulo do Header" />
     
           <h2>Conteúdo</h2>
     
@@ -129,7 +151,7 @@ function App() {
           <Produto titulo="Avulso" descricao="Produto fora da ListaProdutos" />
     
           <h1>{ contador }</h1>
-          <button onClick={adicionarContador}>Adicionar</button>
+          <button onClick={adicionarContador}>Adicionar</button> */}
         </>
       ) }
 
