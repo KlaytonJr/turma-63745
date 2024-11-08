@@ -1,14 +1,13 @@
 import "./style.css"
 
-function Produto ({ titulo, descricao, foto }) {
+function Item({ titulo, descricao }) {
     return (
         <div className="produto">
-            <img src={foto} />
             <h1>{ titulo }</h1>
             <p>{ descricao }</p>
         </div>
     )
 }
 
-export default Produto;
+export default Item;
 

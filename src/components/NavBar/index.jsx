@@ -2,6 +2,7 @@ import "./style.css"
 
 import Header from "../Header"
 import CartWidget from "../CartWidget";
+import { Link } from "react-router-dom";
 
 function NavBar ({ tituloHeader }) {
     return (
@@ -10,9 +11,8 @@ function NavBar ({ tituloHeader }) {
 
             <nav>
                 <ul>
-                    <li><a href="http://google.com" >Home</a></li>
-                    <li><a href="http://google.com" >Produtos</a></li>
-                    <li><a href="http://google.com" >Novidades</a></li>
+                    <li><Link to={'/'}>Home</Link></li>
+                    <li><Link to={'/produto/123'}>Produto</Link></li>
                 </ul>
             </nav>
 
